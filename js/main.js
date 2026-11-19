@@ -42,6 +42,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: .12 }) : null;
   document.querySelectorAll(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
 
+  /* Hero collage: crossfade each tile, staggered so they change one at a time */
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduce) {
+    document.querySelectorAll(".collage .slides").forEach((tile, n) => {
+      const imgs = tile.querySelectorAll("img");
+      if (imgs.length < 2) return;
+      let i = 0;
+      setTimeout(() => setInterval(() => {
+        imgs[i].classList.remove("on");
+        i = (i + 1) % imgs.length;
+        imgs[i].classList.add("on");
+      }, 6000), 1500 * n + 3000);
+    });
+  }
+
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 
