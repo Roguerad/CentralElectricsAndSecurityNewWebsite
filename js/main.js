@@ -42,18 +42,28 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: .12 }) : null;
   document.querySelectorAll(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
 
-  /* Hero collage: crossfade each tile, staggered so they change one at a time */
+  /* Hero collage: crossfade each tile, staggered so they change one at a time.
+     Only fades to a photo once it has fully loaded, so a slow connection
+     never shows an empty tile. */
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduce) {
+    const ready = img => img.complete && img.naturalWidth > 0;
     document.querySelectorAll(".collage .slides").forEach((tile, n) => {
-      const imgs = tile.querySelectorAll("img");
+      const imgs = [...tile.querySelectorAll("img")];
       if (imgs.length < 2) return;
       let i = 0;
-      setTimeout(() => setInterval(() => {
-        imgs[i].classList.remove("on");
-        i = (i + 1) % imgs.length;
-        imgs[i].classList.add("on");
-      }, 6000), 1500 * n + 3000);
+      const step = () => {
+        for (let k = 1; k < imgs.length; k++) {
+          const j = (i + k) % imgs.length;
+          if (ready(imgs[j])) {
+            imgs[i].classList.remove("on");
+            imgs[j].classList.add("on");
+            i = j;
+            return;
+          }
+        }
+      };
+      setTimeout(() => setInterval(step, 6000), 1500 * n + 3000);
     });
   }
 
