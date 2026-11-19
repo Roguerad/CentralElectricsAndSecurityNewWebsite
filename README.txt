@@ -29,3 +29,9 @@ GOOGLE REVIEWS
 CLICK TO CALL
 - Phone number is tappable everywhere; on phones there's a fixed
   Call / Quote / Review bar at the bottom of the screen.
+
+SEO - AFTER THE SITE IS LIVE
+- Add the site to Google Search Console (search.google.com/search-console)
+  and submit: https://www.centralelectricsandsecurity.co.uk/sitemap.xml
+- If you change opening hours, update them on Google, the Contact page,
+  the footer and the business details in each page's <head>.
