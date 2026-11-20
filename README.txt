@@ -38,5 +38,8 @@ SEO - AFTER THE SITE IS LIVE
   the footer and the business details in each page's <head>.
 
 SPEED (Google Lighthouse)
-- The page styles are built into each page, and the photos come in several
-  sizes (.webp) so phones download small versions.
+- All page styles are in one shared file: css/style.css (upload the css
+  folder). The photos come in several sizes (.webp) so phones download
+  small versions.
+- If you edit css/style.css, change the ?v=20261120 number in the pages'
+  <head> so browsers pick up the new version.
