@@ -455,3 +455,4 @@ a.accred-card:hover{transform:translateY(-3px);border-color:var(--sky)}
 @media (prefers-reduced-motion:reduce){.collage .slides img{transition:none;transform:none}}
 @media (max-width:560px){.hero .eyebrow{font-size:.7rem;letter-spacing:.08em;flex-wrap:nowrap}.hero .eyebrow::before{width:16px}}
 .footer-accred img{width:auto;height:52px;object-fit:contain}
+.spec img[src="images/cctv.jpg"]{object-position:100% 50%}
