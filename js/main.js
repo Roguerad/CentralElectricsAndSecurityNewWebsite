@@ -67,6 +67,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  /* Contact page map: only load Google Maps when the visitor asks */
+  document.querySelectorAll("[data-load-map]").forEach(btn => btn.addEventListener("click", () => {
+    const box = btn.closest(".map-consent");
+    const f = document.createElement("iframe");
+    f.className = "map"; f.title = "Map showing 170 Ladybank Road, Derby DE3 0QL";
+    f.src = box.dataset.src; f.loading = "lazy"; f.referrerPolicy = "no-referrer-when-downgrade";
+    box.replaceWith(f);
+  }));
+
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
 
